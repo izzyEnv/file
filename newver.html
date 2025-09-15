@@ -1,0 +1,116 @@
+
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Code+Pro&display=swap"
+    rel="stylesheet">
+<style>
+        @media print {
+      .noprint {
+        display: none;
+      }
+
+      .pagebreak {
+        page-break-after: always;
+      }
+    }
+.bg-pattern {
+  --s: 115px; 
+  --c1: #e0f2f7; 
+  --c2: #b3e5fc; 
+  --c3: #81d4fa; 
+  background: repeating-conic-gradient(
+        from 30deg,
+        #0000 0 120deg,
+        var(--c3) 0 180deg
+      )
+      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg
+    );
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+
+  .bg-slide {
+      --size: 80px;
+      /* control the size */
+      --color: #f0f8ff;
+      /* AliceBlue - a very light blue */
+
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          transparent 40%,
+          var(--color) 41%,
+          var(--color) 60%,
+          transparent 61%,
+          transparent 100%),
+        linear-gradient(45deg,
+          var(--color) 25%,
+          transparent 25%,
+          transparent 50%,
+          var(--color) 50%,
+          var(--color) 75%,
+          transparent 75%,
+          transparent);
+      background-size: var(--size) var(--size);
+    }
+ .voucher-container {
+      float: left;
+    }
+</style>
+    <title>Document</title>
+</head>
+<body>
+     <div class="voucher-container w-[360px] p-1">
+    <div class="voucher-item bg-white rounded-lg shadow-lg overflow-hidden font-['Poppins'] flex mb-6 h-[130px]">
+      <!-- Left Section: Merchant Info -->
+      <div class="w-36 flex-shrink-0 bg-pattern">
+        <div class="w-14 h-14 rounded-br-xl bg-white flex items-center justify-center mb-2">
+          <img class="w-14 h-14" src="https://raw.githubusercontent.com/izzyEnv/file/main/daza.png"
+            alt="Merchant Icon" />
+        </div>
+        <h4 class="bg-sky-200 rounded-r-md font-bold text-xs text-black text-center w-full px-2 text-wrap">#nama_merchant#</h4>
+      </div>
+
+      <!-- Right Section: Details & Credentials -->
+      <div class="flex-grow bg-slide  p-1 flex flex-col justify-between">
+        <!-- Details -->
+        <div class="space-y-1 text-xs">
+          <div class="flex justify-between ">
+            <p class="text-slate-800 ">Tanggal kadaluarsa :</p>
+            <p class="text-gray-700 font-semibold">#expired#</p>
+          </div>
+          <div class="flex justify-between">
+            <p class="text-slate-800">Durasi Voucher :</p>
+            <p class="text-gray-700 font-semibold">#durasi#</p>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <p class="text-slate-800 text-sm">Harga:</p>
+            <p class="price text-base text-sky-400 font-bold bg-sky-100 rounded-md">Rp: 5000</p>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t-2 my-1"></div>
+
+        <!-- user-password -->
+        <div class="space-y-1 text-sm">
+          <div class="flex items-baseline">
+            <p class="w-24 flex-shrink-0 text-right pr-2 text-slate-800 uppercase">Username:</p>
+            <p class="user font-['Source_Code_Pro'] font-black truncate">#username#</p>
+          </div>
+          <div class="flex items-baseline">
+            <p class="w-24 flex-shrink-0 text-right pr-2 text-slate-800 uppercase">Password:</p>
+            <p class="pass font-['Source_Code_Pro'] font-black truncate">#password#</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
