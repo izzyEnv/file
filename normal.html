@@ -1,0 +1,122 @@
+
+<html>
+<head>
+  <title>Voucher</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    @media print {
+      .noprint {
+        display: none;
+      }
+
+      .pagebreak {
+        page-break-after: always;
+      }
+    }
+.bg-pattern {
+  --s: 430px; 
+  --c1: #e0f2f7; 
+  --c2: #b3e5fc; 
+  --c3: #81d4fa; 
+  background: repeating-conic-gradient(
+        from 30deg,
+        #0000 0 120deg,
+        var(--c3) 0 180deg
+      )
+      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg
+    );
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+
+ .voucher-container {
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="p-2 w-[240px] voucher-container">
+  <div class="bg-pattern overflow-hidden voucher-item">
+    
+    <!-- Header -->
+    <div class="bg-linear-to-r from-cyan-300 to-sky-300  flex items-center">
+      <div class="w-8 h-8 bg-white flex items-center justify-center  flex-shrink-0 ">
+        <img class="w-8 h-8" src="https://raw.githubusercontent.com/izzyEnv/file/main/ricon.png" alt="Merchant Icon"/>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-sm ml-1">#nama_merchant#</h4>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="px-2 py-0 flex justify-between">
+      <div class="flex-grow">
+          <div class="flex justify-between items-center">
+          <span class="text-slate-800 text-sm font-medium">Harga :</span>
+          <span class="price text-black font-bold text-base ">Rp :10000</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-800 text-xs font-medium">Tanggal kadaluwarsa :</span>
+          <span class="text-black font-bold text-xs">#expired#</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-800 text-xs font-medium">Durasi Voucher :</span>
+          <span class="text-black font-bold text-xs">#durasi#</span>
+        </div>
+      </div>
+    </div>
+
+  <!-- Footer -->
+  <div class="border-t-2 border-slate-700/60 px-2 py-0.5">
+      <div class="flex flex-col space-y-1">
+        <div class="flex items-center">
+          <div class="w-24 text-slate-800 text-xs uppercase pr-2 text-right font-medium">Username :</div>
+          <div class="user font-black text-sm bg-sky-100 px-2 py-0.5 rounded-md truncate">#username#</div>
+        </div>
+        <div class="flex items-center">
+          <div class="w-24 text-slate-800 text-xs uppercase pr-2 text-right font-medium">Password :</div>
+          <div class="pass font-black text-sm bg-sky-100 px-2 py-0.5 rounded-md truncate">#password#</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+     document.addEventListener('DOMContentLoaded', () => {
+      const color = {
+        3000: 'text-black',
+        5000: 'text-sky-400',
+        10000: 'text-fuchsia-600',
+      };
+      const allPossibleColors = Object.values(color);
+
+      const voucher = document.querySelectorAll('.voucher-item');
+
+      voucher.forEach(voucher => {
+        const price = voucher.querySelector('.price');
+        const user = voucher.querySelector('.user');
+        const pass = voucher.querySelector('.pass');
+
+        if (!price || !user || !pass) return;
+
+        const priceValue = parseInt(price.textContent.replace(/\D/g, ''));
+        const newColor = color[priceValue];
+
+        if (newColor) {
+          const elementsToColor = [price, user, pass];
+          elementsToColor.forEach(el => {
+            el.classList.remove(...allPossibleColors);
+            el.classList.add(newColor);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
