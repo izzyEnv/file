@@ -1,0 +1,159 @@
+<html>
+<head>
+  <link rel="icon" href="https://raw.githubusercontent.com/izzyEnv/file/main/ricon.png" type="image/png">
+  <title>Voucher</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Code+Pro&display=swap"
+    rel="stylesheet">
+  <style>
+    @media print {
+      .noprint {
+        display: none;
+      }
+
+      .pagebreak {
+        page-break-after: always;
+      }
+    }
+
+    .container {
+      overflow: hidden;
+      --c1: #60a5fa;
+      --c2: #2563eb;
+      --c3: #93c5fd;
+      --c4: #3b82f6;
+      background-image:
+        conic-gradient(from -296deg at 100% 59%, var(--c1) 0 133deg, #fff0 0 100%),
+        conic-gradient(from -296deg at 85% 67%, var(--c2) 0 134.5deg, #fff0 0 100%),
+        conic-gradient(from -296deg at 68% 77%, var(--c1) 0 137deg, #fff0 0 100%),
+        conic-gradient(from -296deg at 55% 85%, var(--c2) 0 150deg, #fff0 0 100%),
+        conic-gradient(from -248deg at 38% 77%, var(--c1) 0 97deg, #fff0 0 100%),
+        conic-gradient(from -248deg at 15% 66%, var(--c2) 0 95deg, #fff0 0 100%),
+        conic-gradient(from 207deg at 15% 66%, var(--c1) 0 84deg, var(--c3) 0 138deg, #fff0 0 100%),
+        conic-gradient(from 23deg at 85% 12%, var(--c1) 0 34deg, var(--c3) 0 136deg, #fff0 0 100%),
+        conic-gradient(from 22deg at 66% 27%, var(--c2) 0 34deg, var(--c4) 0 128deg, #fff0 0 100%),
+        conic-gradient(from 17deg at 50% 40%, var(--c1) 0 39deg, var(--c3) 0 133deg, #fff0 0 100%),
+        conic-gradient(from 31deg at 33% 26%, var(--c2) 0 94deg, var(--c4) 0 125deg, #fff0 0 100%),
+        conic-gradient(from -57deg at 19% 15%, var(--c2) 0 90deg, var(--c1) 0 181deg, var(--c3) 0 217deg, var(--c4) 0 360deg, #fff0 0 100%);
+      background-position: 50%;
+      background-size: 198px 168px;
+    }
+
+    .bg-pattern {
+      --size: 80px;
+      /* control the size */
+      --color: #f0f8ff;
+      /* AliceBlue - a very light blue */
+
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          transparent 40%,
+          var(--color) 41%,
+          var(--color) 60%,
+          transparent 61%,
+          transparent 100%),
+        linear-gradient(45deg,
+          var(--color) 25%,
+          transparent 25%,
+          transparent 50%,
+          var(--color) 50%,
+          var(--color) 75%,
+          transparent 75%,
+          transparent);
+      background-size: var(--size) var(--size);
+    }
+
+    /* Styling untuk tampilan berjejer seperti vkopi.html */
+    .voucher-container {
+      float: left;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Voucher 1 -->
+  <div class="voucher-container w-[350px] p-0.5">
+    <div class="voucher-item bg-white rounded-lg shadow-lg overflow-hidden font-['Poppins'] flex mb-6 h-[130px]">
+      <!-- Left Section: Merchant Info -->
+      <div class="w-36 flex-shrink-0 container">
+        <div class="w-14 h-14 rounded-br-xl bg-white flex items-center justify-center mb-2">
+          <img class="w-10 h-10" src="https://raw.githubusercontent.com/izzyEnv/file/main/ricon.png"
+            alt="Merchant Icon" />
+        </div>
+        <h4 class="font-bold text-xs text-white text-center w-full px-2 text-wrap">#nama_merchant#</h4>
+      </div>
+
+      <!-- Right Section: Details & Credentials -->
+      <div class="flex-grow bg-pattern p-1 flex flex-col justify-between">
+        <!-- Details -->
+        <div class="space-y-1 text-xs">
+          <div class="flex justify-between">
+            <p class="text-gray-700 text-[11px]">Tanggal kadaluarsa :</p>
+            <p class="text-gray-700 font-semibold">#expired#</p>
+          </div>
+          <div class="flex justify-between">
+            <p class="text-gray-700">Durasi Voucher :</p>
+            <p class="text-gray-700 font-semibold">#durasi#</p>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <p class="text-gray-700 text-sm">Harga:</p>
+            <p class="price text-base   text-sky-400 font-bold">Rp: #price#</p>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t-2 border-dashed border-sky-200 my-1"></div>
+
+        <!-- user-password -->
+        <div class="space-y-1 text-sm">
+          <div class="flex items-baseline">
+            <p class="w-24 flex-shrink-0 text-right pr-2 text-gray-500 uppercase">Username:</p>
+            <p class="user font-['Source_Code_Pro'] font-black truncate">#username#</p>
+          </div>
+          <div class="flex items-baseline">
+            <p class="w-24 flex-shrink-0 text-right pr-2 text-gray-500 uppercase">Password:</p>
+            <p class="pass font-['Source_Code_Pro'] font-black truncate">#password#</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+     document.addEventListener('DOMContentLoaded', () => {
+      const color = {
+        3000: 'text-black',
+        5000: 'text-sky-400',
+        10000: 'text-fuchsia-600',
+      };
+      const allPossibleColors = Object.values(color);
+
+      const voucher = document.querySelectorAll('.voucher-item');
+
+      voucher.forEach(voucher => {
+        const price = voucher.querySelector('.price');
+        const user = voucher.querySelector('.user');
+        const pass = voucher.querySelector('.pass');
+
+        if (!price || !user || !pass) return;
+
+        const priceValue = parseInt(price.textContent.replace(/\D/g, ''));
+        const newColor = color[priceValue];
+
+        if (newColor) {
+          const elementsToColor = [price, user, pass];
+          elementsToColor.forEach(el => {
+            el.classList.remove(...allPossibleColors);
+            el.classList.add(newColor);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
