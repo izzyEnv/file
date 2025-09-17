@@ -13,8 +13,33 @@
         page-break-after: always;
       }
     }
+
+    /* From Uiverse.io by themrsami */ 
+/* .bg-try {
+  width: 100%;
+  background:
+    linear-gradient(135deg, #b3e5fc 25%, transparent 25%) -20px 0,
+    linear-gradient(225deg, #b3e5fc 25%, transparent 25%) -20px 0,
+    linear-gradient(315deg, #b3e5fc 25%, transparent 25%),
+    linear-gradient(45deg, #b3e5fc 25%, transparent 25%);
+  background-size: 40px 40px;
+  background-color: #e0f2f7;
+  position: relative;
+} */
+
+.bg-try::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.5) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(255,255,255,0.5) 0%, transparent 40%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 .bg-pattern {
-  --s: 430px; 
+  --s: 230px; 
   --c1: #e0f2f7; 
   --c2: #b3e5fc; 
   --c3: #81d4fa; 
@@ -40,7 +65,7 @@
 </head>
 <body>
   <div class="p-2 w-[240px] voucher-container">
-  <div class="bg-pattern overflow-hidden voucher-item">
+  <div class=" overflow-hidden voucher-item">
     
     <!-- Header -->
     <div class="bg-linear-to-r from-cyan-300 to-sky-300  flex items-center">
@@ -53,7 +78,7 @@
     </div>
 
     <!-- Body -->
-    <div class="px-2 py-0 flex justify-between">
+    <div class="px-2 py-0 flex justify-between bg-pattern">
       <div class="flex-grow">
           <div class="flex justify-between items-center">
           <span class="text-slate-800 text-sm font-medium">Harga :</span>
@@ -71,7 +96,7 @@
     </div>
 
   <!-- Footer -->
-  <div class="border-t-2 border-slate-700/60 px-2 py-0.5">
+  <div class="bg-pattern px-2 py-0.5 ">
       <div class="flex flex-col space-y-1">
         <div class="flex items-center">
           <div class="w-24 text-slate-800 text-xs uppercase pr-2 text-right font-medium">Username :</div>
@@ -87,28 +112,39 @@
 </div>
   <script>
      document.addEventListener('DOMContentLoaded', () => {
-      const color = {
-        3000: 'text-black',
-        5000: 'text-sky-400',
-        10000: 'text-fuchsia-600',
-      };
-      const allPossibleColors = Object.values(color);
 
-      const voucher = document.querySelectorAll('.voucher-item');
+      // sesuaikan warna dengan harga
+      const setting = [
+        { price: 3000, color: 'text-black' },
+        { price: 5000, color: 'text-sky-400' },
+        { price: 10000, color: 'text-fuchsia-600' }
+      ];
 
-      voucher.forEach(voucher => {
-        const price = voucher.querySelector('.price');
-        const user = voucher.querySelector('.user');
-        const pass = voucher.querySelector('.pass');
+
+      const allPossibleColors = setting.map(s => s.color);
+
+      const voucherItems = document.querySelectorAll('.voucher-item');
+
+      voucherItems.forEach(voucher => {
+      // ambil element yang akan diubah warnanya
+       const price = voucher.querySelector('.price');
+       const user = voucher.querySelector('.user');
+       const pass = voucher.querySelector('.pass');
 
         if (!price || !user || !pass) return;
 
         const priceValue = parseInt(price.textContent.replace(/\D/g, ''));
-        const newColor = color[priceValue];
+
+      
+        const newColor = setting
+          .filter(s => priceValue >= s.price)
+          .sort((a, b) => b.price - a.price)[0]
+          ?.color ?? null;
 
         if (newColor) {
           const elementsToColor = [price, user, pass];
           elementsToColor.forEach(el => {
+            // Remove all possible colors before adding the new one
             el.classList.remove(...allPossibleColors);
             el.classList.add(newColor);
           });

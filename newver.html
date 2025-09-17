@@ -16,11 +16,23 @@
         page-break-after: always;
       }
     }
+
+    .bg-try {
+  width: 100%;
+  background:
+    linear-gradient(135deg, rgba(179, 229, 252, 0.5) 25%, transparent 25%) -20px 0,
+    linear-gradient(225deg, rgba(179, 229, 252, 0.5) 25%, transparent 25%) -20px 0,
+    linear-gradient(315deg, rgba(179, 229, 252, 0.5) 25%, transparent 25%),
+    linear-gradient(45deg,  rgba(179, 229, 252, 0.5) 25%, transparent 25%);
+  background-size: 90px 90px;
+  background-color: #e0f2f7;
+  position: relative;
+}
 .bg-pattern {
-  --s: 115px; 
-  --c1: #e0f2f7; 
-  --c2: #b3e5fc; 
-  --c3: #81d4fa; 
+  --s: 150px; 
+  --c1: #7dd3fc; /* Even darker shade */
+  --c2: #38bdf8; /* Even darker shade */
+  --c3: #0ea5e9; /* Even darker shade */
   background: repeating-conic-gradient(
         from 30deg,
         #0000 0 120deg,
@@ -74,15 +86,15 @@
           <img class="w-14 h-14" src="https://raw.githubusercontent.com/izzyEnv/file/main/daza.png"
             alt="Merchant Icon" />
         </div>
-        <h4 class="bg-sky-200 rounded-r-md font-bold text-xs text-black text-center w-full px-2 text-wrap">#nama_merchant#</h4>
+        <h4 class=" font-bold text-xs text-black text-center w-full px-2 text-wrap">#nama_merchant#</h4>
       </div>
 
       <!-- Right Section: Details & Credentials -->
-      <div class="flex-grow bg-slide  p-1 flex flex-col justify-between">
+      <div class="flex-grow bg-try  p-1 flex flex-col justify-between">
         <!-- Details -->
         <div class="space-y-1 text-xs">
           <div class="flex justify-between ">
-            <p class="text-slate-800 ">Tanggal kadaluarsa :</p>
+            <p class="text-slate-800 font-medium">Tanggal expired :</p>
             <p class="text-gray-700 font-semibold">#expired#</p>
           </div>
           <div class="flex justify-between">
@@ -91,7 +103,7 @@
           </div>
           <div class="flex justify-between items-baseline">
             <p class="text-slate-800 text-sm">Harga:</p>
-            <p class="price text-base text-sky-400 font-bold bg-sky-100 rounded-md">Rp: 5000</p>
+            <p class="price text-base text-sky-400 font-bold bg-sky-100 rounded-md">Rp: 10000</p>
           </div>
         </div>
 
@@ -102,15 +114,58 @@
         <div class="space-y-1 text-sm">
           <div class="flex items-baseline">
             <p class="w-24 flex-shrink-0 text-right pr-2 text-slate-800 uppercase">Username:</p>
-            <p class="user font-['Source_Code_Pro'] font-black truncate">#username#</p>
+            <p class="user bg-sky-100 rounded-md font-['Source_Code_Pro'] font-black truncate">#username#</p>
           </div>
           <div class="flex items-baseline">
             <p class="w-24 flex-shrink-0 text-right pr-2 text-slate-800 uppercase">Password:</p>
-            <p class="pass font-['Source_Code_Pro'] font-black truncate">#password#</p>
+            <p class="pass bg-sky-100 rounded-md font-['Source_Code_Pro'] font-black truncate">#password#</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+     document.addEventListener('DOMContentLoaded', () => {
+
+      // sesuaikan warna dengan harga
+      const setting = [
+        { price: 3000, color: 'text-black' },
+        { price: 5000, color: 'text-sky-400' },
+        { price: 10000, color: 'text-fuchsia-600' }
+      ];
+
+
+      const allPossibleColors = setting.map(s => s.color);
+
+      const voucherItems = document.querySelectorAll('.voucher-item');
+
+      voucherItems.forEach(voucher => {
+      // ambil element yang akan diubah warnanya
+       const price = voucher.querySelector('.price');
+       const user = voucher.querySelector('.user');
+       const pass = voucher.querySelector('.pass');
+
+        if (!price || !user || !pass) return;
+
+        const priceValue = parseInt(price.textContent.replace(/\D/g, ''));
+
+      
+        const newColor = setting
+          .filter(s => priceValue >= s.price)
+          .sort((a, b) => b.price - a.price)[0]
+          ?.color ?? null;
+
+        if (newColor) {
+          const elementsToColor = [price, user, pass];
+          elementsToColor.forEach(el => {
+            // Remove all possible colors before adding the new one
+            el.classList.remove(...allPossibleColors);
+            el.classList.add(newColor);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
