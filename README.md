@@ -3,9 +3,9 @@
 
 ## List Template
 
-miring.html
-newver.html(miring v2)
-normal.html
+* miring.html
+* newver.html(miring v2)
+* normal.html
 
 
 ## coba sendiri aja gimana tampilannya
